@@ -1,12 +1,10 @@
-package com.gujun.springboot02.dao;
+package com.gujun.springboot02.service;
 
 import com.gujun.springboot02.entity.Student;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-public interface StudentMapper {
+public interface StudentService {
 
     List<Student> getAll();
 
@@ -17,5 +15,7 @@ public interface StudentMapper {
     int update(Student student);
 
     int deleteById(Integer sId);
+
+    void updates(Student student,Integer sId);
 
 }

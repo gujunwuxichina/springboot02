@@ -12,7 +12,7 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/test01
     username: root
     password: root
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     #配置初始化大小/最小/最大
     initial-size: 1
     min-idle: 1
@@ -29,3 +29,9 @@ spring:
     #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
     pool-prepared-statements: false
     max-pool-prepared-statement-per-connection-size: 20
+
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/*Mapper.xml
+  #mybatis扫描包别名，和注解@Alias联用
+  type-aliases-package: com.gujun.springboot02.entity

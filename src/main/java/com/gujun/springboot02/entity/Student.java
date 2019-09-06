@@ -1,5 +1,6 @@
 package com.gujun.springboot02.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.ibatis.type.Alias;
 
 import java.io.Serializable;
@@ -9,6 +10,7 @@ public class Student implements Serializable {
 
     private static final long serialVersionUID = -1496372289823312053L;
 
+    @JSONField(serialize=false) //若使用fastjson且配置好了,无需序列化，即此字段不会返回；
     private Integer sId;
 
     private String sName;

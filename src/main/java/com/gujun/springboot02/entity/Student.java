@@ -15,6 +15,7 @@ public class Student implements Serializable {
 
     private String sName;
 
+    @JSONField(serialize=false)
     private int sage;
 
     private String sex;

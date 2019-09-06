@@ -3,6 +3,7 @@ package com.gujun.springboot02.service;
 import com.gujun.springboot02.dao.StudentMapper;
 import com.gujun.springboot02.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
@@ -17,6 +18,7 @@ public class StudentServiceImpl implements StudentService {
     private StudentMapper studentMapper;
 
     @Override
+    @Cacheable(value = "cacheNoLimit",key = "'students'")
     public List<Student> getAll() {
         return studentMapper.getAll();
     }

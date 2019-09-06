@@ -53,6 +53,7 @@ public class RedisConfig {
         return redisTemplate;
     }
 
+    //配置redis缓存管理器
     @Bean("redisCacheManage")
     public CacheManager cacheManager(@Autowired RedisConnectionFactory redisConnectionFactory){
         System.out.println(redisConnectionFactory);

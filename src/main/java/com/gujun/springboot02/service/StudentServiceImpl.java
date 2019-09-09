@@ -17,6 +17,10 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private StudentMapper studentMapper;
 
+    /*
+        sprint-redis缓存详见ssm02;
+        
+     */
     @Override
     @Cacheable(value = "cacheNoLimit",key = "'students'")
     public List<Student> getAll() {

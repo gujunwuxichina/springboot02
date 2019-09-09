@@ -9,6 +9,7 @@ import com.gujun.springboot02.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -23,6 +24,11 @@ public class StudentController {
     @Autowired
     private RedisTemplate<String,Object> redisTemplate;
 
+    /*
+        为了简化其method属性，增加了@Get/Post/Patch/Put/DeleteMapping注解；
+        tip：在REST风格会讨论Patch/Put/Delete；
+
+     */
     @RequestMapping("/getAll")
     public JSONObject getAll(){
         JSONObject jsonObject=new JSONObject();
@@ -33,6 +39,12 @@ public class StudentController {
 
     //配置PageHelper插件分页查询
     @RequestMapping("/getByPage")
+    /*
+        获取控制器参数：
+        1.无注解下获取参数:SpringMVC也可以获取参数，其参数允许为空，要求是参数名称和http请求的参数名称保持一致；
+        2.@RequestParam,指定请求参数和方法参数的映射关系，value,required配置属性；
+        3.传递数组，支持使用，分割数组元素；见下testArrayParam；
+     */
     public JSONObject getByPage(int pages,int pageSize){
         JSONObject jsonObject=new JSONObject();
         PageHelper.startPage(pages, pageSize);
@@ -45,7 +57,7 @@ public class StudentController {
 
 
     @RequestMapping("/getById")
-    public JSONObject getById(Integer sId){
+    public JSONObject getById(@RequestParam(value = "sId",required = true) Integer sId){
         JSONObject jsonObject=new JSONObject();
         Student student=studentService.getById(sId);
         jsonObject.put("student",student);
@@ -74,6 +86,14 @@ public class StudentController {
             e.printStackTrace();
             jsonObject.put("result","error");
         }
+        return jsonObject;
+    }
+
+    @RequestMapping("/testArrayParam")
+    public JSONObject testArrayParam(int[] ints,@RequestParam(value = "strs") String[] strs){
+        JSONObject jsonObject=new JSONObject();
+        jsonObject.put("ints",ints);
+        jsonObject.put("strs",strs);
         return jsonObject;
     }
 

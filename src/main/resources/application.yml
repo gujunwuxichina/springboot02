@@ -44,7 +44,7 @@ spring:
           max-wait: 2000  #最大等待时间
   data:
     mongodb:
-#       uri: mongodb://gujun:root@127.0.0.1:27017/admin
+#       uri: mongodb://gujun:root@127.0.0.1:27017/admin #两个写法都行
       host: 127.0.0.1
       port: 27017
       username: gujun

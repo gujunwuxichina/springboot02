@@ -3,9 +3,12 @@ package com.gujun.springboot02;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.gujun.springboot02.Interceptors.FirstInterceptor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 import java.util.List;
@@ -31,5 +34,13 @@ public class Springboot02Application extends WebMvcConfigurationSupport {
         converters.add(fastConverter);
         //5、追加默认转换器
         super.addDefaultHttpMessageConverters(converters);
+    }
+
+    //注册拦截器
+    @Override
+    protected void addInterceptors(InterceptorRegistry registry) {
+        //注册，并返回一个拦截器注册；
+        InterceptorRegistration ir=registry.addInterceptor(new FirstInterceptor());
+        ir.addPathPatterns("/**");  //指定拦截器拦截的匹配模式
     }
 }

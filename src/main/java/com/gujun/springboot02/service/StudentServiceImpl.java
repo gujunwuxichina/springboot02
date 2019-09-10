@@ -22,7 +22,7 @@ public class StudentServiceImpl implements StudentService {
         
      */
     @Override
-    @Cacheable(value = "cacheNoLimit",key = "'students'")
+//    @Cacheable(value = "cacheNoLimit",key = "'students'")
     public List<Student> getAll() {
         return studentMapper.getAll();
     }

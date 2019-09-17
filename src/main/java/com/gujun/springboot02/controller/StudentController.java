@@ -166,6 +166,7 @@ public class StudentController {
         SpringMVC提供了两个注解；
         @SessionAttribute,将HttpSession中的属性取出，赋予指定参数；
         @SessionAttributes,将数据模型保存到Session中；
+        H
      */
 
 }
